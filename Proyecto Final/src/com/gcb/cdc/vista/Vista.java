@@ -24,7 +24,7 @@ public class Vista extends JFrame {
 	
 	public Vista(){
 		
-		super("Tabla de puntos");
+		super("Proyecto Final");
 		setSize(900,600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(300,100);
