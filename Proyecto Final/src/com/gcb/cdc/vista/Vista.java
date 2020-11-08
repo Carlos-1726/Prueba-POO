@@ -2,9 +2,11 @@ package com.gcb.cdc.vista;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
@@ -20,7 +22,8 @@ public class Vista extends JFrame {
 	public JRadioButton obesidad;
 	public JRadioButton edad;
 	public JButton estados;
-	public JPanel panel1,panel2, panelbotons;
+	public JPanel panel1,panel2, panelbotons,pandatos;
+	public JLabel info,info2,info3,nulo;
 	
 	public Vista(){
 		
@@ -72,12 +75,33 @@ public class Vista extends JFrame {
 		
 		panel1.add(panelbotons,BorderLayout.CENTER);
 		
-		estados = new JButton("Mostrar Grafica");
+		estados = new JButton("Mostrar Estados");
 		panel1.add(estados,BorderLayout.SOUTH);
 		
 		this.add(panel1);
 		
 		panel2 = new JPanel();
+		
+		pandatos = new JPanel();
+		pandatos.setLayout(new GridLayout(4,1));
+		
+		nulo = new JLabel("");
+		pandatos.add(nulo);
+		
+		info = new JLabel("");
+		info.setHorizontalAlignment(SwingConstants.CENTER);
+		pandatos.add(info);
+		
+		info2 = new JLabel("");
+		info2.setHorizontalAlignment(SwingConstants.CENTER);
+		pandatos.add(info2);
+		
+		info3 = new JLabel("");
+		info3.setHorizontalAlignment(SwingConstants.CENTER);
+		pandatos.add(info3);
+		
+		panel2.add(pandatos,BorderLayout.NORTH);
+		
 		this.add(panel2);
 		
 		
