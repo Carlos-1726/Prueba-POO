@@ -2,7 +2,7 @@ package com.gcb.cdc.vista;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -24,6 +24,7 @@ public class Vista extends JFrame {
 	public JButton estados;
 	public JPanel panel1,panel2, panelbotons,pandatos;
 	public JLabel info,info2,info3,nulo;
+	public ButtonGroup genero, padecimiento;
 	
 	public Vista(){
 		
@@ -44,6 +45,7 @@ public class Vista extends JFrame {
 		
 		panelbotons = new JPanel();
 		panelbotons.setLayout(new GridLayout(4,2));
+		
 		
 		hombre = new JRadioButton("Hombre");
 		hombre.setHorizontalAlignment(SwingConstants.CENTER);
@@ -72,6 +74,16 @@ public class Vista extends JFrame {
 		edad = new JRadioButton("Edad");
 		edad.setHorizontalAlignment(SwingConstants.CENTER);
 		panelbotons.add(edad);
+		
+		genero = new ButtonGroup();
+		genero.add(hombre);
+		genero.add(mujer);
+		
+		padecimiento = new ButtonGroup();
+		padecimiento.add(epoc);
+		padecimiento.add(asma);
+		padecimiento.add(hipertension);
+		padecimiento.add(obesidad);
 		
 		panel1.add(panelbotons,BorderLayout.CENTER);
 		
