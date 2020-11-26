@@ -1,3 +1,12 @@
+/*
+ * CONECTATABLA
+ * com.gcb.cdc.modelo
+ * Gabriel Camacho y Carlos Dighero
+ * ********************************
+ * Descripción :
+ * Clase que realiza la recuperación de los datos de la base de datos 
+ */
+
 package com.gcb.cdc.modelo;
 
 import java.sql.Connection;
@@ -21,14 +30,15 @@ public class ConectaTabla {
 		ModeloCovid covid;
 		
 		try{
+			// recupera la conexion
 			Connection conn = conectarBase.getConnection();
-			
+			// Recupera la entidad que se esta buscando por parte del usuario
 			PreparedStatement prest = conn.prepareStatement("select * from covid where Entidad = "+ estado);
             ResultSet rs = prest.executeQuery();
             
             
             while(rs.next()){
-            	
+            	// Lee cada uno de las columnas de la tabla
             	covid = new ModeloCovid();
             	covid.setId(rs.getString(1));
             	covid.setSexo(rs.getInt(2));
@@ -49,7 +59,7 @@ public class ConectaTabla {
 			System.out.println(" SQLException : " + ex.getMessage() );	
 			
 		}
-		return listacovid;
+		return listacovid; //nombre de la tabla
 		
 		
 	}

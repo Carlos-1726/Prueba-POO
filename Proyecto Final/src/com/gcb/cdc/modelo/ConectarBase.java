@@ -1,3 +1,11 @@
+/*
+ * CONECTABASE
+ * com.gcb.cdc.modelo
+ * Gabriel Camacho y Carlos Dighero
+ * ********************************
+ * Descripción :
+ * Clase que realiza una conexión entre la base de datos y el programa 
+ */
 package com.gcb.cdc.modelo;
 
 import java.sql.Connection;

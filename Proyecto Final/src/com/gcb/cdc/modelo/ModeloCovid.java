@@ -1,7 +1,16 @@
+/*
+ * MODELOCOVID
+ * com.gcb.cdc.modelo
+ * Gabriel Camacho y Carlos Dighero
+ * ********************************
+ * Descripción :
+ * Clase que determina la estructura de los datos que se recuperarán de la base de datos 
+ */
+
 package com.gcb.cdc.modelo;
 
 public class ModeloCovid {
-	
+	//Atributos
 	private String id;
 	private int sexo;
 	private int entidad;
@@ -10,11 +19,11 @@ public class ModeloCovid {
 	private int asma;
 	private int obesidad;
 	private int hipertension;
-	
+	//Recuperación del valor del atributo
 	public String getId() {
 		return id;
 	}
-
+	//Inicializacion del valor del atributo
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -77,7 +86,7 @@ public class ModeloCovid {
 
 	
 	public ModeloCovid(){
-		
+		//Contructor de la clase 
 		id ="";
 		sexo=0;
 		entidad=0;

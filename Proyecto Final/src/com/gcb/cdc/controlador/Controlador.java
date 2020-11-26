@@ -1,3 +1,12 @@
+/*
+ * CONTROLADOR
+ * com.gcb.cdc.controlador
+ * Gabriel Camacho y Carlos Dighero
+ * ********************************
+ * Descripción :
+ * Contiene las reglas para la gestión de eventos y recibe los eventos de entrada
+ */
+
 package com.gcb.cdc.controlador;
 
 import java.awt.event.ActionEvent;
@@ -9,8 +18,9 @@ import com.gcb.cdc.vista.Vista;
 
 public class Controlador implements ActionListener{
 
-	Vista vistcod;
-	ConectaTabla contabla; 
+	Vista vistcod;  //Variable de tipo vista
+	ConectaTabla contabla; //Variable de tipo ConectaTabla
+	//Atributos
 	int datos1 = 0;
 	int datos2 = 0;
 	int datos3 = 0;
@@ -21,16 +31,16 @@ public class Controlador implements ActionListener{
 	int edad5 = 0;
 	int edad6 = 0;
 	String genre = "";
-	ArrayList<ModeloCovid> idEntidades = new ArrayList<ModeloCovid>();
-	ArrayList<ModeloCovid> Genero = new ArrayList<ModeloCovid>();
+	ArrayList<ModeloCovid> idEntidades = new ArrayList<ModeloCovid>(); //ArrayList de tipo ModeloCovid
+	ArrayList<ModeloCovid> Genero = new ArrayList<ModeloCovid>();//ArrayList de tipo ModeloCovid
 	
 	public Controlador(Vista vistcod, ConectaTabla contabla){
-		
-		this.vistcod = vistcod;
+		//Constructor que prsenta las variables tipo vista y conecta tabla además de los Action Listener
+		this.vistcod = vistcod;  //Aquí ya se realizó la consulta a la BD. 
 		this.contabla = contabla;
-		this.vistcod.ventestados.addActionListener(this);
-		this.vistcod.estados.addActionListener(this);
-		this.vistcod.hombre.addActionListener(this);
+		this.vistcod.ventestados.addActionListener(this);//Combo Box de la vista aqui escucha al evento
+		this.vistcod.estados.addActionListener(this);//Botón de la vista aqui escucha al evento
+		this.vistcod.hombre.addActionListener(this);//Radio Botones de la vista aqui escucha al evento
 		this.vistcod.mujer.addActionListener(this);
 		this.vistcod.asma.addActionListener(this);
 		this.vistcod.edad.addActionListener(this);
@@ -45,7 +55,7 @@ public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == vistcod.estados){
 			
 			vistcod.ventestados.removeAllItems();
-			vistcod.ventestados.addItem("");
+			vistcod.ventestados.addItem("");   //Implementación de cada item dentro del Combo Box 
 			vistcod.ventestados.addItem("Aguascalientes");
 			vistcod.ventestados.addItem("Baja California");
 			vistcod.ventestados.addItem("Baja California Sur");
@@ -85,7 +95,7 @@ public void actionPerformed(ActionEvent e) {
 			
 		}
 		else if (e.getSource() == vistcod.ventestados){
-			
+			//Opciones e instrucciones según el item elegido por el usuario en el Combo Box
 			int num = vistcod.ventestados.getSelectedIndex();
 			if(num>=0){
 				if(num == 1){
@@ -95,7 +105,7 @@ public void actionPerformed(ActionEvent e) {
 					datos1 = 0;
 					for(ModeloCovid datoss : contabla.listacovid(1)){
 						if(datoss.getEntidad()== 1){
-							idEntidades.add(datoss);
+							idEntidades.add(datoss); //Implementación del número de personas encontradas en este estado en un ArrayList
 							datos1++;
 						}
 					}
@@ -104,8 +114,7 @@ public void actionPerformed(ActionEvent e) {
 					vistcod.info.repaint();
 				}
 				if(num == 2){
-				//vistcod.info.selectAll();
-				//vistcod.info.replaceSelection("");
+					
 				vistcod.info.setText("Baja California");
 				idEntidades.clear();
 				datos1 = 0;
@@ -602,14 +611,15 @@ public void actionPerformed(ActionEvent e) {
 			}
 		}
 		if (e.getSource() == vistcod.hombre){
+			
+			//Intrucciones una vez que el usuario elija un genero
 			genre = "";
 			vistcod.info2.setText("Población de Hombres");
 			Genero.clear();
 			datos2 = 0;
-			//System.out.println("Genero limpio");
 			for(int i=0;i<idEntidades.size();i++){
 				if(idEntidades.get(i).getSexo()== 2){
-					Genero.add(idEntidades.get(i));
+					Genero.add(idEntidades.get(i)); //Implementación del nuevo numero de personas encontradas en un nuevo ArrayList  
 					datos2++;
 				}
 			}
@@ -636,7 +646,7 @@ public void actionPerformed(ActionEvent e) {
 			vistcod.info2.repaint();
 		}
 		if (e.getSource() == vistcod.epoc){
-			
+			//Instrucciones una vez que el usuario presione un Radio Botón acerca de un padecimiento
 			vistcod.pangraph.updateUI();
 			vistcod.pangraph.repaint();
 			vistcod.pangraph.removeAll();
@@ -644,13 +654,15 @@ public void actionPerformed(ActionEvent e) {
 			vistcod.info3.setText("Número de Casos con EPOC");
 			datos3=0;
 			for(int i=0;i<Genero.size();i++){
-				if(Genero.get(i).getEpoc()== 1){
+				if(Genero.get(i).getEpoc()== 1){  //Conteo final de las personas con las caracteristicas establecidas por el usuario
 					datos3++;
 				}
 			}
+			
+			//Creación de un objeto de la clase Grafica con los atributos correspondeintes
 			Grafica grafica = new Grafica(datos3,genre,"","EPOC");
 			vistcod.pangraph.add(grafica.createDemoPanel());
-			
+			//Implementación de la grafica de barras en la clase Vista
 			System.out.println(datos3);
 			vistcod.info3.updateUI();
 			vistcod.info3.repaint();
@@ -729,6 +741,7 @@ public void actionPerformed(ActionEvent e) {
 			for(int i=0; i<Genero.size();i++){
 				if(Genero.get(i).getEdad()>=20 && Genero.get(i).getEdad()<=30){
 					edad1++;
+					//Categorización por edades de las personas encontradas 
 				}
 				if(Genero.get(i).getEdad()>30 && Genero.get(i).getEdad()<=40){
 					edad2++;
