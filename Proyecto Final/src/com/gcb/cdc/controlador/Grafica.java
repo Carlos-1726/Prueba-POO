@@ -41,24 +41,28 @@ public class Grafica {
 		
 	public JPanel createDemoPanel(){
 		
+		Color color = new Color(91,203,185);
+		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		dataset.setValue(valor, barra, rango);
 		
 		JFreeChart graph = ChartFactory.createBarChart(titulo,"Población","Numero de Personas", dataset, PlotOrientation.VERTICAL, true, true, false);
-		//graph.setBackgroundPaint(Color.white);
+		graph.setBackgroundPaint(color);
         graph.getTitle().setPaint(Color.black); 
         CategoryPlot p = graph.getCategoryPlot(); 
         
         BarRenderer br = (BarRenderer) p.getRenderer();
         br.setMaximumBarWidth(.10); 
          
-        p.setRangeGridlinePaint(Color.black); 
+        p.setRangeGridlinePaint(Color.white); 
         
         ChartPanel chartPanel = new ChartPanel(graph);
 		return chartPanel;
 	}
 	
 	public JPanel createDemoPanel2(){
+		
+		Color color = new Color(91,203,185);
 		
 		DefaultCategoryDataset datoset = new DefaultCategoryDataset();
 		datoset.setValue(val1, barra, "20-30");
@@ -69,10 +73,11 @@ public class Grafica {
 		datoset.setValue(val6, barra, "70-100");
 		
 		JFreeChart graf = ChartFactory.createBarChart(titulo,"Población","Numero de Personas", datoset, PlotOrientation.VERTICAL, true, true, false);
+		graf.setBackgroundPaint(color);
 		graf.getTitle().setPaint(Color.black); 
 		
 		CategoryPlot plot = graf.getCategoryPlot(); 
-		plot.setRangeGridlinePaint(Color.black);
+		plot.setRangeGridlinePaint(Color.white);
 		
 		BarRenderer b = (BarRenderer) plot.getRenderer();
 	    b.setMaximumBarWidth(.10); 

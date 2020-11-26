@@ -2,14 +2,14 @@ package com.gcb.cdc.modelo;
 
 public class ModeloCovid {
 	
-	String id;
-	int sexo;
-	int entidad;
-	int edad;
-	int epoc;
-	int asma;
-	int obesidad;
-	int hipertension;
+	private String id;
+	private int sexo;
+	private int entidad;
+	private int edad;
+	private int epoc;
+	private int asma;
+	private int obesidad;
+	private int hipertension;
 	
 	public String getId() {
 		return id;

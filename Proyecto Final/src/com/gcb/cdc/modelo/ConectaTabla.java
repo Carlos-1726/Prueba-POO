@@ -15,15 +15,17 @@ public class ConectaTabla {
 		
 	}
 	
-	public ArrayList<ModeloCovid> BaseCovid(){
+	public ArrayList <ModeloCovid> listacovid (int estado){
 		
 		ArrayList<ModeloCovid> listacovid = new ArrayList<ModeloCovid>();
 		ModeloCovid covid;
 		
 		try{
 			Connection conn = conectarBase.getConnection();
-			PreparedStatement prest = conn.prepareStatement("select * from covid");
+			
+			PreparedStatement prest = conn.prepareStatement("select * from covid where Entidad = "+ estado);
             ResultSet rs = prest.executeQuery();
+            
             
             while(rs.next()){
             	
@@ -36,11 +38,11 @@ public class ConectaTabla {
             	covid.setAsma(rs.getInt(6));
             	covid.setHipertension(rs.getInt(7));
             	covid.setObesidad(rs.getInt(8));
-            	listacovid.add(covid); 
-            	
+            	listacovid.add(covid);
+            		
             }
             
-            
+		
 		}catch(Exception ex){
 			
 			ex.printStackTrace () ;	  
@@ -48,6 +50,7 @@ public class ConectaTabla {
 			
 		}
 		return listacovid;
+		
 		
 	}
 	
